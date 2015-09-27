@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Anything</string>
+    <string name="toggle_turn_on">Turn On</string>
+    <string name="toggle_turn_off">Turn Off</string>
+    <string name="btn_display">Display</string>
+    <string name="toggle_button">Toggle Button</string>
 </resources>
