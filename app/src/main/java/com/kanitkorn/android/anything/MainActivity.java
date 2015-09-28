@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -26,11 +27,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ToggleButton toggleButton1, toggleButton2;
-    private EditText editText;
+    private EditText editText, editText1;
+    private Button buttonPopupMenu;
 
-    Spinner spinner;
+    private RadioGroup radioGroup;
 
-    String[] celebrities = {
+    private Spinner spinner;
+
+    private List<String> listAutoCompleteRuntime;
+    private AutoCompleteTextView autoCompleteTextViewRuntime;
+
+    private String[] celebrities = {
             "Chris Hemsworth",
             "Jennifer Lawrence",
             "Jessica Alba",
@@ -42,11 +49,7 @@ public class MainActivity extends AppCompatActivity {
             "Vin Diesel"
     };
 
-    List<String> listAutoCompleteRuntime;
-    AutoCompleteTextView autoCompleteTextViewRuntime;
-
-    String str[] = {"Arun", "Mathev", "Vishnu", "Vishal", "Arjun", "Arul", "Balaji", "Babu", "Boopathy", "Godwin", "Nagaraj"};
-    private RadioGroup radioGroup;
+    private String str[] = {"Arun", "Mathev", "Vishnu", "Vishal", "Arjun", "Arul", "Balaji", "Babu", "Boopathy", "Godwin", "Nagaraj"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         addListenerOnRadioButton();
+
+        addListenerOnPopupMenu();
 
         addListenerOnToggleButton();
 
@@ -65,6 +70,35 @@ public class MainActivity extends AppCompatActivity {
         initAutoCompleteDynamic();
         initAutoCompleteRuntime();
 
+    }
+
+    public void addListenerOnPopupMenu() {
+        buttonPopupMenu = (Button) findViewById(R.id.buttonPopupMenu);
+        buttonPopupMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create the instance of PopupMenu
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, buttonPopupMenu);
+
+
+                // Inflating the popup using XML file
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+                // Registering Popup
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(MainActivity.this, "You clicked : " + item.getTitle(), Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+                });
+
+                // groupID, itemID, order, title
+                popupMenu.getMenu().add(1, 4, 4, "Four");
+
+                popupMenu.show();
+            }
+        });
     }
 
     public void addListenerOnRadioButton() {
@@ -153,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         listAutoCompleteRuntime.add("Item 3");
 
         autoCompleteTextViewRuntime = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-        final EditText editText1 = (EditText) findViewById(R.id.editText1);
+        editText1 = (EditText) findViewById(R.id.editText1);
         Button button1 = (Button) findViewById(R.id.button1);
 
         add();

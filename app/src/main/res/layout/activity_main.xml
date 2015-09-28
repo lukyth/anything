@@ -71,6 +71,16 @@
 
         <TextView
             style="@style/HeaderTextStyle"
+            android:text="@string/popup_menu" />
+
+        <Button
+            android:id="@+id/buttonPopupMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_display"/>
+
+        <TextView
+            style="@style/HeaderTextStyle"
             android:text="@string/toggle_button" />
 
         <ToggleButton

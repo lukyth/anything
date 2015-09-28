@@ -21,4 +21,6 @@
     <string name="menu_red">Red</string>
     <string name="menu_green">Green</string>
     <string name="menu_blue">Blue</string>
+
+    <string name="popup_menu">Popup Menu</string>
 </resources>
