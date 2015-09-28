@@ -60,6 +60,21 @@
 
         <TextView
             style="@style/HeaderTextStyle"
+            android:text="@string/spinner" />
+
+        <TextView
+            android:id="@+id/textViewSpinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_celebrity" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/HeaderTextStyle"
             android:text="@string/auto_complete" />
 
         <AutoCompleteTextView
@@ -72,8 +87,8 @@
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/autocomplete_runtime_enter_text"
-            android:inputType="textPersonName" >
+            android:inputType="textPersonName"
+            android:text="@string/autocomplete_runtime_enter_text">
 
             <requestFocus />
         </EditText>

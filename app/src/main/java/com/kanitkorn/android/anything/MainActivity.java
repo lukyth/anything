@@ -3,12 +3,14 @@ package com.kanitkorn.android.anything;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -20,11 +22,25 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton toggleButton1, toggleButton2;
     private EditText editText;
 
+    Spinner spinner;
+
+    String[] celebrities = {
+            "Chris Hemsworth",
+            "Jennifer Lawrence",
+            "Jessica Alba",
+            "Brad Pitt",
+            "Tom Cruise",
+            "Johnny Depp",
+            "Megan Fox",
+            "Paul Walker",
+            "Vin Diesel"
+    };
+
     List<String> listAutoCompleteRuntime;
     AutoCompleteTextView autoCompleteTextViewRuntime;
 
-    String str[] = {"Arun", "Mathev", "Vishnu", "Vishal", "Arjun",
-            "Arul", "Balaji", "Babu", "Boopathy", "Godwin", "Nagaraj"};
+    String str[] = {"Arun", "Mathev", "Vishnu", "Vishal", "Arjun", "Arul", "Balaji", "Babu", "Boopathy", "Godwin", "Nagaraj"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +51,32 @@ public class MainActivity extends AppCompatActivity {
 
         addListenerOnEditText();
 
+        addListenerOnSpinner();
+
         initAutoCompleteStatic();
         initAutoCompleteDynamic();
         initAutoCompleteRuntime();
 
+    }
+
+    public void addListenerOnSpinner() {
+        spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, celebrities);
+
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                int position = spinner.getSelectedItemPosition();
+                Toast.makeText(getApplicationContext(), "You have selected " + celebrities[+position], Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
     }
 
     public void initAutoCompleteStatic() {

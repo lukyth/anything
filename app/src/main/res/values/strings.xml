@@ -9,6 +9,9 @@
     <string name="edit_text">Edit Text</string>
     <string name="enter_text">Type your text here</string>
     <string name="initial_text">This text can be edited</string>
+
+    <string name="spinner">Spinner</string>
+    <string name="select_celebrity">Select a Celebrity from the Dropdown List</string>
     
     <string name="auto_complete">Auto Complete</string>
     <string name="autocomplete_static_enter_text">[Static] Type your text here</string>
