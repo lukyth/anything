@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -40,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextViewRuntime;
 
     String str[] = {"Arun", "Mathev", "Vishnu", "Vishal", "Arjun", "Arul", "Balaji", "Babu", "Boopathy", "Godwin", "Nagaraj"};
-
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        addListenerOnRadioButton();
 
         addListenerOnToggleButton();
 
@@ -57,6 +61,34 @@ public class MainActivity extends AppCompatActivity {
         initAutoCompleteDynamic();
         initAutoCompleteRuntime();
 
+    }
+
+    public void addListenerOnRadioButton() {
+        /* Initialize Radio Group and attach click handler */
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.clearCheck();
+
+        /* Attach CheckedChangeListener to radio group */
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                if (null != radioButton && checkedId > -1) {
+                    Toast.makeText(MainActivity.this, radioButton.getText(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
+
+    public void onClear(View v) {
+        /* Clears all selected radio buttons to default */
+        radioGroup.clearCheck();
+    }
+
+    public void onSubmit(View v) {
+        RadioButton rb = (RadioButton) radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
+        Toast.makeText(MainActivity.this, rb.getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void addListenerOnSpinner() {
