@@ -17,4 +17,8 @@
     <string name="autocomplete_static_enter_text">[Static] Type your text here</string>
     <string name="autocomplete_dynamic_enter_text">[Dynamic] Type your text here</string>
     <string name="autocomplete_runtime_enter_text">[Runtime] Type your text here</string>
+
+    <string name="menu_red">Red</string>
+    <string name="menu_green">Green</string>
+    <string name="menu_blue">Blue</string>
 </resources>

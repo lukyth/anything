@@ -1,7 +1,11 @@
 package com.kanitkorn.android.anything;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -211,5 +215,50 @@ public class MainActivity extends AppCompatActivity {
                 msg.show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+
+        switch (item.getItemId()) {
+            case R.id.redMenu:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                }
+                else {
+                    item.setChecked(true);
+                }
+                linearLayout.setBackgroundColor(Color.RED);
+                return true;
+            case R.id.greenMenu:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                }
+                else {
+                    item.setChecked(true);
+                }
+                linearLayout.setBackgroundColor(Color.GREEN);
+                return true;
+            case R.id.blueMenu:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                }
+                else {
+                    item.setChecked(true);
+                }
+                linearLayout.setBackgroundColor(Color.BLUE);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
