@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         addListenerOnRadioButton();
 
+        addListenerOnLongPressButton();
+
         addListenerOnPopupMenu();
 
         addListenerOnToggleButton();
@@ -70,6 +72,25 @@ public class MainActivity extends AppCompatActivity {
         initAutoCompleteDynamic();
         initAutoCompleteRuntime();
 
+    }
+
+    public void addListenerOnLongPressButton() {
+        Button buttonLongPress = (Button) findViewById(R.id.buttonLongPress);
+        buttonLongPress.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "You have pressed it long :)", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+        buttonLongPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Not Long Enough :(", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void addListenerOnPopupMenu() {
@@ -267,8 +288,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.redMenu:
                 if (item.isChecked()) {
                     item.setChecked(false);
-                }
-                else {
+                } else {
                     item.setChecked(true);
                 }
                 linearLayout.setBackgroundColor(Color.RED);
@@ -276,8 +296,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.greenMenu:
                 if (item.isChecked()) {
                     item.setChecked(false);
-                }
-                else {
+                } else {
                     item.setChecked(true);
                 }
                 linearLayout.setBackgroundColor(Color.GREEN);
@@ -285,8 +304,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.blueMenu:
                 if (item.isChecked()) {
                     item.setChecked(false);
-                }
-                else {
+                } else {
                     item.setChecked(true);
                 }
                 linearLayout.setBackgroundColor(Color.BLUE);
