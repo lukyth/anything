@@ -3,10 +3,14 @@ package com.kanitkorn.android.anything;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -24,7 +28,9 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener {
+
+    private static final String LOGCAT = null;
 
     private ToggleButton toggleButton1, toggleButton2;
     private EditText editText, editText1;
@@ -56,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        findViewById(R.id.textViewDrag).setOnTouchListener(this);
+        findViewById(R.id.pinkLayout).setOnDragListener(this);
+        findViewById(R.id.yellowLayout).setOnDragListener(this);
+
         addListenerOnRadioButton();
 
         addListenerOnLongPressButton();
@@ -74,6 +84,47 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            view.startDrag(null, shadowBuilder, view, 0);
+            view.setVisibility(View.INVISIBLE);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean onDrag(View layoutView, DragEvent dragEvent) {
+        int action = dragEvent.getAction();
+        switch (action) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                Log.d(LOGCAT, "Drag event started");
+                break;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                Log.d(LOGCAT, "Drag event entered into " + layoutView.toString());
+                break;
+            case DragEvent.ACTION_DRAG_EXITED:
+                Log.d(LOGCAT, "Drag event exited from " + layoutView.toString());
+                break;
+            case DragEvent.ACTION_DROP:
+                Log.d(LOGCAT, "Dropped");
+                View view = (View) dragEvent.getLocalState();
+                ViewGroup owner = (ViewGroup) view.getParent();
+                owner.removeView(view);
+                LinearLayout container = (LinearLayout) layoutView;
+                container.addView(view);
+                view.setVisibility(View.VISIBLE);
+                break;
+            case DragEvent.ACTION_DRAG_ENDED:
+                Log.d(LOGCAT, "Drag ended");
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
     public void addListenerOnLongPressButton() {
         Button buttonLongPress = (Button) findViewById(R.id.buttonLongPress);
         buttonLongPress.setOnLongClickListener(new View.OnLongClickListener() {
@@ -88,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
         buttonLongPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not Long Enough :(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        "Not Long Enough :(", Toast.LENGTH_LONG).show();
             }
         });
     }

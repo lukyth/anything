@@ -23,4 +23,6 @@
     <string name="menu_blue">Blue</string>
 
     <string name="popup_menu">Popup Menu</string>
+
+    <string name="drag_text">Drag Me</string>
 </resources>

@@ -71,13 +71,40 @@
 
         <TextView
             style="@style/HeaderTextStyle"
+            android:text="Drag and Drop" />
+
+        <LinearLayout
+            android:id="@+id/pinkLayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#FF8989"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViewDrag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/drag_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/yellowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="60dp"
+            android:background="#FFCC00"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <TextView
+            style="@style/HeaderTextStyle"
             android:text="Long Press" />
 
         <Button
             android:id="@+id/buttonLongPress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_display"/>
+            android:text="@string/btn_display" />
 
         <TextView
             style="@style/HeaderTextStyle"
@@ -87,7 +114,7 @@
             android:id="@+id/buttonPopupMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_display"/>
+            android:text="@string/btn_display" />
 
         <TextView
             style="@style/HeaderTextStyle"
