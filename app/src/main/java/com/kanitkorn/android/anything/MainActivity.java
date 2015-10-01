@@ -22,6 +22,7 @@ import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         findViewById(R.id.textViewDrag).setOnTouchListener(this);
         findViewById(R.id.pinkLayout).setOnDragListener(this);
         findViewById(R.id.yellowLayout).setOnDragListener(this);
+
+        TextView textViewBackgroundImage = (TextView) findViewById(R.id.textViewBackgroundImage);
+        textViewBackgroundImage.setBackgroundResource(R.drawable.text_bg);
+        final float scale =  getBaseContext().getResources().getDisplayMetrics().density;
+        textViewBackgroundImage.setLayoutParams(new LayoutParams((int) (120 * scale + 0.5f), (int) (40 * scale + 0.5f)));
 
         addListenerOnRadioButton();
 
